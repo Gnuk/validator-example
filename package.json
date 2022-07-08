@@ -1,0 +1,29 @@
+{
+  "name": "template-ts-vite-kata",
+  "version": "1.0.0",
+  "description": "TypeScript template to make kata with vitest",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest",
+    "test:ci": "vitest run --coverage",
+    "test:coverage": "vitest --coverage",
+    "eslint:ci": "eslint './**/*.{ts,js}'",
+    "eslint": "eslint './**/*.{ts,js}' --fix"
+  },
+  "author": "Anthony REY",
+  "license": "MIT",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.30.5",
+    "@typescript-eslint/parser": "^5.30.5",
+    "c8": "^7.11.3",
+    "eslint": "^8.19.0",
+    "eslint-import-resolver-typescript": "^3.2.4",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.7.1",
+    "vitest": "^0.17.1"
+  },
+  "dependencies": {
+    "typescript": "^4.7.4"
+  }
+}
