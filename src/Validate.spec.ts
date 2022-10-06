@@ -6,21 +6,16 @@ import { validate } from './Validate';
 describe('Validate', () => {
   it('Should have errors', () => {
     validate({
-      first: Either.right<Error, string>('First'),
+      first: Either.right('First'),
       second: Either.left(new Error('This is a second error')),
       third: Either.left(new Error('This is a third error')),
-      fourth: Either.right<Error, number>(0),
+      fourth: Either.right(0),
     }).do(
       (errors) => {
-        expect(errors).toHaveLength(2);
+        const { second, third } = errors;
 
-        const [firstError, secondError] = errors;
-
-        expect(firstError.field).toBe('second');
-        expect(firstError.error).toEqual(new Error('This is a second error'));
-
-        expect(secondError.field).toBe('third');
-        expect(secondError.error).toEqual(new Error('This is a third error'));
+        expect(second).toEqual(new Error('This is a second error'));
+        expect(third).toEqual(new Error('This is a third error'));
       },
       () => {
         throw new Error('Should not pass');
@@ -30,10 +25,10 @@ describe('Validate', () => {
 
   it('Should validate fields', () => {
     validate({
-      first: Either.right<Error, string>('First'),
-      second: Either.right<Error, Date>(new Date('2022-01-01T00:00:00Z')),
-      third: Either.right<Error, number>(42),
-      fourth: Either.right<Error, number>(0),
+      first: Either.right('First'),
+      second: Either.right(new Date('2022-01-01T00:00:00Z')),
+      third: Either.right(42),
+      fourth: Either.right(0),
     }).do(
       () => {
         throw new Error('Should not have errors');
